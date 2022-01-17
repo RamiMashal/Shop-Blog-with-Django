@@ -1,0 +1,30 @@
+{% extends "blog_app/base.html" %}
+
+{% block title %}
+<title>Editar post</title>
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+
+        <div class="container">
+            <div class="form-group">
+                <h3><strong>Editar post</strong></h3>
+                <hr><br>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary">Editar</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+
+<p>Para realizar esta acción debes estar registrado/a.</p>
+
+{% endif %}
+<a class="btn btn-dark" href="{% url 'blog_app:blog' %}" role="button">Atrás</a>
+
+{% endblock %}

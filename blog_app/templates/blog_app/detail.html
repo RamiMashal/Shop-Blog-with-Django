@@ -1,0 +1,24 @@
+{% extends "blog_app/base.html" %}
+
+{% block title %}
+<title>{{ product.section }}</title>
+{% endblock %}
+
+{% block content %}
+
+{% if product %}
+
+    <div class="container">
+        <div class="row">
+            <p>Nombre del producto: {{ product.name }} | Precio: {{ product.price }} | Sección: {{ product.section }}</p>
+            <button type="button" class="btn btn-primary">Comprar</button>
+        </div>
+    </div>
+
+{% else %}
+    <p>El producto no está disponible.</p>
+{% endif %}
+
+<a class="btn btn-dark" href="{% url 'blog_app:shop' %}" role="button">Atrás</a>
+
+{% endblock %}

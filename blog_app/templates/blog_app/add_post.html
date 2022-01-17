@@ -1,0 +1,23 @@
+{% extends "blog_app/base.html" %}
+
+{% block title %}
+<title>Crear post</title>
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="container">
+        <div class="form-group">
+            <h3><strong>Crear post</strong></h3>
+            <hr><br>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Crear</button>
+            </form>
+        </div>
+    </div>
+{% endif %}
+<a class="btn btn-dark" href="{% url 'blog_app:blog' %}" role="button">Atrás</a>
+
+{% endblock %}

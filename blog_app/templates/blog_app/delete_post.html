@@ -1,0 +1,46 @@
+{% extends "blog_app/base.html" %}
+
+{% block title %}
+<title>Eliminar post</title>
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+
+        <div class="container">
+            <h3><strong> Eliminar post:</strong></h3><br>
+            <h4><strong>Asunto: </strong>{{post.subject}}</h4>
+            <small class="text-muted">Por: {{post.author}} - Fecha: {{post.date}}</small><br>
+            <hr><br>
+            <div class="row">
+                <div>
+                    {{post.body}}<br><hr>
+                </div>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <h5><strong>¿Está seguro de eliminar este post?</strong></h5><br>
+                <button class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+    {% endif %}
+{% endif %}
+<a class="btn btn-dark" href="{% url 'blog_app:blog' %}" role="button">Atrás</a>
+
+{% endblock %}
+
+<div class="container">
+
+    <h3>{{post.subject}}</h3>
+    <small class="text-muted">Por: {{post.author}} - Fecha: {{post.date}}</small><br>
+    <hr><br>
+
+    <div class="row">
+        <div>
+            
+        </div>
+    </div>
+    <a class="btn btn-primary" href="{% url 'blog_app:edit_post' post.pk %}" role="button">Editar</a>
+    <a class="btn btn-danger" href="{% url 'blog_app:delete_post' post.pk %}" role="button">Eliminar</a>
+</div>

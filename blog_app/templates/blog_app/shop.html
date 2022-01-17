@@ -1,0 +1,33 @@
+{% extends "blog_app/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Nuestros productos</title>
+{% endblock %}
+
+{% block content %}
+
+{% if products_list %}
+
+<div class="container">
+    <div class="row">
+        {% for product in products_list %}
+        <div class="col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'img/140x100_placeholder.png' %}" class="card-img-top" alt="140x100_placeholder">
+                <div class="card-body">
+                <h5 class="card-title">{{ product.name }} | {{ product.section }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{% url 'blog_app:detail' product.pk %}" class="btn btn-primary">+ Info</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+    <p>No hay productos disponibles.</p>
+{% endif %}
+
+{% endblock %}
